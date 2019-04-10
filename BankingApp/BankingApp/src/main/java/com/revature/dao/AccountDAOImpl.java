@@ -15,19 +15,17 @@ public class AccountDAOImpl implements AccountDAO{
 	public List<Account> getAccounts() {
 		List<Account> acc = new ArrayList<Account>();
 		try(Connection con = ConnectionUtil.getConnection()){
-			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, USER_ID,BALANCE "
-					+ "FROM ACCOUNTS";
+			String sql = "SELECT ACCOUNT_ID, ACCOUNT_NUMBER, USER_ID, BALANCE"
+					+ " FROM ACCOUNTS";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
-				int accountId = rs.getInt("ACCOUNT_ID");
+				int id = rs.getInt("ACCOUNT_ID");
 				int accountNum = rs.getInt("ACCOUNT_NUMBER");
 				//int userId = rs.getInt("USER_ID");
 				double balance = rs.getDouble("BALANCE");
-				acc.add(new Account(accountId, accountNum,balance));
+				acc.add(new Account(id, accountNum,balance));
 			}
-			
-			
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
