@@ -17,9 +17,12 @@ public class App
     	
         AccountDAO acc = new AccountDAOImpl();
         List<Account> accountList = acc.getAccounts();
+        System.out.println(acc.getAccountById(41));
         
         for(Account a: accountList) {
         	System.out.println(a);
+        	
         }
+       
     }
 }
